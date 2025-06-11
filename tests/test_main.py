@@ -1,4 +1,4 @@
-from typing import Type
+from typing import Type, Optional
 
 from book import Book
 from displays import Display, ConsoleDisplay, ReverseDisplay
@@ -20,7 +20,7 @@ SERIALIZER_STRATEGIES: dict[str, Type[Serializer]] = {
     "xml": XmlSerializer,
 }
 
-def main(book: Book, commands: list[tuple[str, str]]) -> None | str:
+def main(book: Book, commands: list[tuple[str, str]]) -> Optional[str]:
     for cmd, method_type in commands:
         if cmd == "display":
             DISPLAY_STRATEGIES[method_type]().display(book.content)
@@ -30,7 +30,6 @@ def main(book: Book, commands: list[tuple[str, str]]) -> None | str:
 
         elif cmd == "serialize":
             return SERIALIZER_STRATEGIES[method_type]().serialize(book)
-
 
 if __name__ == "__main__":
     sample_book = Book("Sample Book", "This is some sample content.")
