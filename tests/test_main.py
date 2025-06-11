@@ -5,7 +5,6 @@ from displays import Display, ConsoleDisplay, ReverseDisplay
 from serializers import Serializer, JsonSerializer, XmlSerializer
 from printers import Printer, ConsolePrinter, ReversePrinter
 
-
 DISPLAY_STRATEGIES: dict[str, Type[Display]] = {
     "console": ConsoleDisplay,
     "reverse": ReverseDisplay,
@@ -20,7 +19,6 @@ SERIALIZER_STRATEGIES: dict[str, Type[Serializer]] = {
     "json": JsonSerializer,
     "xml": XmlSerializer,
 }
-
 
 def main(book: Book, commands: list[tuple[str, str]]) -> None | str:
     for cmd, method_type in commands:
@@ -37,4 +35,3 @@ def main(book: Book, commands: list[tuple[str, str]]) -> None | str:
 if __name__ == "__main__":
     sample_book = Book("Sample Book", "This is some sample content.")
     print(main(sample_book, [("display", "reverse"), ("serialize", "xml")]))
-
